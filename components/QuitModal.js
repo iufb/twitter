@@ -11,7 +11,7 @@ const QuitModal = () => {
     return (
         <div>
             <Transition.Root show={quit} as={Fragment}>
-                <Dialog as="div" className="fixed z-50 top-[680px] left-[310px] pt-8" onClose={setQuit}>
+                <Dialog as="div" className="fixed z-50 top-[550px] xl:top-[680px] xl:left-[310px] pt-8" onClose={setQuit}>
                     <div className="flex items-start justify-center min-h-[800px] sm:min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                         <Transition.Child
                             as={Fragment}
@@ -34,12 +34,12 @@ const QuitModal = () => {
                             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                         >
-                            <div className='shadow shadow-white h-[130px] w-[300px] bg-black rounded-2xl overflow-hidden opacity-90 '
+                            <div className='shadow shadow-white xl:h-[130px] xl:w-[300px] bg-black rounded-2xl overflow-hidden opacity-90 '
 
                             >
                                 <div>
                                     <div
-                                        className="text-[#d9d9d9] flex items-center justify-center xl:ml-auto  xl:-mr-5 mt-auto border-b border-gray-700 py-4 pl-[15px]"
+                                        className="text-[#d9d9d9] flex items-center justify-center xl:ml-auto  xl:-mr-5 mt-auto border-b border-gray-700 py-4 pl-[15px] px-[20px]"
 
                                     >
                                         <Image
@@ -50,7 +50,7 @@ const QuitModal = () => {
                                             className="h-10 w-10 rounded-full xl:mr-2.5"
                                         />
 
-                                        <div className="hidden xl:inline leading-5 xl:ml-[10px] ">
+                                        <div className=" xl:inline leading-5 xl:ml-[10px]  ">
                                             <h4 className="font-bold">{session.user.name}</h4>
                                             <p className="text-[#6e767d ]">@{session.user.tag} </p>
                                         </div>

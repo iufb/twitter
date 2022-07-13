@@ -37,7 +37,7 @@ function Input({rows,nameBtn, placeholder = "What's happening?", check = false})
     setLoading(true)
 
     const docRef = await addDoc(collection(db, 'posts'), {
-      id: session.user.uid,
+        id: session.user.uid,
       username: session.user.name,
       userImg: session.user.image,
       tag: session.user.tag,
@@ -63,14 +63,26 @@ function Input({rows,nameBtn, placeholder = "What's happening?", check = false})
   const sendComment = async (e) => {
     e.preventDefault();
 
-    await addDoc(collection(db, "posts", id, "comments"), {
+    const docRef = await addDoc(collection(db, "posts", id, "comments"), {
       comment: input,
+      id: session.user.uid,
       username: session.user.name,
       tag: session.user.tag,
       userImg: session.user.image,
       timestamp: serverTimestamp(),
     });
-
+    const imgRef = ref(storage, `posts/${docRef.id}/imagesComments`)
+    if(selectedFile){
+      await uploadString(imgRef, selectedFile, 'data_url').then(async () => {
+        const downloadURL = await getDownloadURL(imgRef)
+        await updateDoc(doc(db, 'posts', id, 'comments', docRef.id), {
+          image: downloadURL,
+        })
+      })
+    }
+    setLoading(false)
+    setSelectedFile(null)
+    setShowEmojis(false)
     setInput("");
   };
   const filePickerRef = useRef(null)

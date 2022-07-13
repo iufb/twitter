@@ -24,7 +24,7 @@ function Sidebar({ml}) {
     const [quit, setQuit] = useRecoilState(quitState)
     const router = useRouter()
   return (
-    <div className={`hidden sm:flex flex-col items-center xl:items-start xl:w-[340px] p-2 fixed h-full xl:ml-${ml}`}>
+    <div className={`sm:flex flex-col items-center xl:items-start xl:w-[340px] p-2 fixed h-full xl:ml-${ml}`}>
       <Link href='/'>
           <a className="flex items-center  justify-center  w-14 h-14 hoverAnimation p-0 xl:ml-24">
               <Image src="https://rb.gy/ogau5a" width={30} height={30} alt='img'/>
@@ -47,11 +47,11 @@ function Sidebar({ml}) {
         <SidebarLink text="Profile" Icon={UserIcon} />
         <SidebarLink text="More" Icon={DotsCircleHorizontalIcon} />
       </div>
-      <button className="hidden xl:inline ml-auto bg-[#1d9bf0] text-white rounded-full w-56 h-[52px] font-bold text-lg shadow-md hover:bg-[#1a8cd8]" onClick={()=>setIsOpen(true)}>
+      <button className="w-[50px] h-[50px] text-[15px] xl:inline xl:ml-auto bg-[#1d9bf0] text-white rounded-full xl:w-56 xl:h-[52px] font-bold xl:text-lg shadow-md hover:bg-[#1a8cd8]" onClick={()=>setIsOpen(true)}>
         Tweet
       </button>
       <div
-        className="text-[#d9d9d9] flex items-center justify-center hoverAnimation xl:ml-auto  xl:-mr-5 mt-auto xl:min-w-[254px] xl:max-w-[254px] "
+        className=" mt-[160px] text-[#d9d9d9] flex  xl:mt-[250px] items-center justify-center hoverAnimation xl:ml-auto  xl:-mr-5 mt-auto xl:min-w-[254px] xl:max-w-[254px] "
         onClick={()=>setQuit(true)}
       >
         <Image

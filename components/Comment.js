@@ -60,6 +60,11 @@ const likeComment = async ()=>{
             <p className="text-[#d9d9d9] mt-0.5 max-w-lg  text-[15px] sm:text-base">
               {comment?.comment}
             </p>
+            <img
+                src={comment?.image}
+                alt=""
+                className="rounded-2xl max-h-[700px] object-cover mr-2 mt-[10px]"
+            />
           </div>
           <div className="icon group flex-shrink-0">
             <DotsHorizontalIcon className="h-5 text-[#6e767d] group-hover:text-[#1d9bf0]" />
