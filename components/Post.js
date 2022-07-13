@@ -78,13 +78,13 @@ function Post({ id, post, postPage }) {
         onClick={() => router.push(`/${id}`)}
       >
         {!postPage && (
-            <div className='mr-4'>
+            <div className='mr-4 '>
               <Image
                   src={post?.userImg}
                   alt="userImg"
                   width={44}
                   height={44}
-                  className="h-11 w-11 rounded-full"
+                  className="h-11 w-11 rounded-full "
               />
             </div>
 

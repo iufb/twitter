@@ -169,6 +169,7 @@ function Input({rows,nameBtn, placeholder = "What's happening?", check = false})
                           marginLeft: -40,
                           maxWidth: '320px',
                           borderRadius: '20px',
+                          zIndex: '50',
                         }}
                         theme="dark"
                     />
