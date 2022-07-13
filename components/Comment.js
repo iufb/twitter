@@ -71,12 +71,7 @@ const likeComment = async ()=>{
           </div>
         </div>
 
-        <div className={`text-[#6e767d] flex justify-between w-10/12`}>
-          <div className="flex items-center space-x-1 group">
-            <div className="icon group-hover:text-[#1d9bf0] ">
-              <ChatIcon className="h-5 group-hover:text-[#1d9bf0]"/>
-            </div>
-          </div>
+        <div className={`text-[#6e767d] flex justify-around w-10/12`}>
           {session.user.name === comment.username  && (
               <div className='flex items-center space-x-1 group'
                    onClick={()=>deleteDoc(doc(db, 'posts', id, 'comments', idComment))}
@@ -108,12 +103,6 @@ const likeComment = async ()=>{
                     {likes.length}
                   </span>
             )}
-          </div>
-          <div className='icon group'>
-            <ShareIcon className='h-5 group-hover:text-[#1d9bf0]'/>
-          </div>
-          <div className='icon group'>
-            <ChartBarIcon className='h-5 group-hover:text-[#1d9bf0]'/>
           </div>
         </div>
     </div>
