@@ -78,11 +78,16 @@ function Post({ id, post, postPage }) {
         onClick={() => router.push(`/${id}`)}
       >
         {!postPage && (
-          <img
-            src={post?.userImg}
-            alt="userImg"
-            className="h-11 w-11 rounded-full mr-4"
-          />
+            <div className='mr-4'>
+              <Image
+                  src={post?.userImg}
+                  alt="userImg"
+                  width={44}
+                  height={44}
+                  className="h-11 w-11 rounded-full"
+              />
+            </div>
+
         )}
         <div className="flex flex-col space-y-2 w-full">
           <div className={`flex ${!postPage && "justify-between"}`}>
