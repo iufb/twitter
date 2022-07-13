@@ -179,7 +179,7 @@ function Input({rows,nameBtn, placeholder = "What's happening?", check = false})
                           position: 'absolute',
                           marginTop: selectedFile ? '-500px' : '465px',
                           marginLeft: -40,
-                          maxWidth: '320px',
+                          maxWidth: '250px',
                           borderRadius: '20px',
                           zIndex: '50',
                         }}

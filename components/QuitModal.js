@@ -11,7 +11,7 @@ const QuitModal = () => {
     return (
         <div>
             <Transition.Root show={quit} as={Fragment}>
-                <Dialog as="div" className="fixed z-50 top-[550px] xl:top-[680px] xl:left-[310px] pt-8" onClose={setQuit}>
+                <Dialog as="div" className="fixed z-50 top-[500px] xl:top-[680px] xl:left-[310px] pt-8" onClose={setQuit}>
                     <div className="flex items-start justify-center min-h-[800px] sm:min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                         <Transition.Child
                             as={Fragment}

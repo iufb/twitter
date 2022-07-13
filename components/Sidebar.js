@@ -51,7 +51,7 @@ function Sidebar({ml}) {
         Tweet
       </button>
       <div
-        className=" mt-[160px] text-[#d9d9d9] flex  xl:mt-[250px] items-center justify-center hoverAnimation xl:ml-auto  xl:-mr-5 mt-auto xl:min-w-[254px] xl:max-w-[254px] "
+        className=" mt-[100px] text-[#d9d9d9] flex  xl:mt-[250px] items-center justify-center hoverAnimation xl:ml-auto  xl:-mr-5 mt-auto xl:min-w-[254px] xl:max-w-[254px] "
         onClick={()=>setQuit(true)}
       >
         <Image
