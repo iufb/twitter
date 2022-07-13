@@ -1,8 +1,9 @@
 import Sidebar from "../components/Sidebar";
+import Input from "../components/Input";
 import Head from "next/head";
 import Modal from "../components/Modal";
 import { useRecoilState } from "recoil";
-import { modalState } from "../atoms/modalAtom";
+import {deleteState, modalState} from "../atoms/modalAtom";
 import { getProviders, getSession, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -22,15 +23,16 @@ import Widgets from "../components/Widgets";
 
 function PostPage({ providers, trendingResults, followResults }) {
   const { data: session } = useSession();
-  const [isOpen, setIsOpen] = useRecoilState(modalState);
+  const [isOpen] = useRecoilState(modalState);
   const [comments, setComments] = useState([]);
+
   const router = useRouter();
   const { id } = router.query;
   const [post, setPost] = useState();
   useEffect(
     () =>
       onSnapshot(doc(db, "posts", id), (snapshot) => setPost(snapshot.data())),
-    [db]
+    [id]
   );
   useEffect(
     () =>
@@ -41,9 +43,9 @@ function PostPage({ providers, trendingResults, followResults }) {
         ),
         (snapshot) => setComments(snapshot.docs)
       ),
-    [db, id]
+    [id]
   );
-  console.log(comments);
+
   if (!session) return <Login providers={providers} />;
 
   return (
@@ -67,12 +69,13 @@ function PostPage({ providers, trendingResults, followResults }) {
             Tweet
           </div>
           <Post post={post} id={id} postPage />
+          <Input nameBtn='Reply' placeholder='Tweet your reply' check={true}/>
           {comments.length > 0 && (
             <div className="pb-72">
               {comments.map((comment) => (
                 <Comment
                   key={comment.id}
-                  id={comment.id}
+                  idComment={comment.id}
                   comment={comment.data()}
                 />
               ))}

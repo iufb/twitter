@@ -14,7 +14,7 @@ function Feed() {
           setPosts(snapshot.docs)
         }
       ),
-    [db]
+    []
   )
 
   return (
@@ -25,7 +25,7 @@ function Feed() {
           <SparklesIcon className="h-5 text-white" />
         </div>
       </div>
-      <Input />
+      <Input nameBtn={'Tweet'}/>
       <div className="pb-72">
         {posts.map(post=>(
           <Post key={post.id} id={post.id} post={post.data()}/>

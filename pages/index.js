@@ -1,18 +1,31 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import Sidebar from '../components/Sidebar'
-import Feed from '../components/Feed'
-import Login from '../components/Login'
-import { getProviders, getSession, useSession} from 'next-auth/react'
+import Head from "next/head";
+import Sidebar from "../components/Sidebar";
+import Feed from "../components/Feed";
+import Login from "../components/Login";
+import { getProviders, getSession, useSession } from "next-auth/react";
 import Modal from "../components/Modal";
-import {useRecoilState} from "recoil";
-import {modalState} from "../atoms/modalAtom";
+import { useRecoilState } from "recoil";
+import { deleteState, modalState } from "../atoms/modalAtom";
 import Widgets from "../components/Widgets";
+import DeleteModal from "../components/DeleteModal";
+import React from "react";
 
-export default function Home({ providers, trendingResults, followResults}) {
-  const { data: session} = useSession()
-  const [isOpen, setIsOpen] = useRecoilState(modalState)
-  if(!session)  return <Login providers={providers}/>
+export default function Home({ providers, trendingResults, followResults }) {
+  const { data: session } = useSession();
+  const [isOpen] = useRecoilState(modalState);
+  const [deletePost] = useRecoilState(deleteState);
+  if (!session)
+    return (
+      <>
+        <Head>
+          <title>Twitter Clone/Log in</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <main>
+          <Login providers={providers} />
+        </main>
+      </>
+    );
   return (
     <div>
       <Head>
@@ -20,24 +33,28 @@ export default function Home({ providers, trendingResults, followResults}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="bg-black min-h-screen flex max-width-[1500px] xl:ml-[150px] mx-auto">
-        <Sidebar ml={24}/>
+        <Sidebar ml={24} />
         <Feed />
-        <Widgets trendingResults={trendingResults} followResults={followResults}/>
-        {isOpen && <Modal/>}
+        <Widgets
+          trendingResults={trendingResults}
+          followResults={followResults}
+        />
+        {isOpen && <Modal />}
+        {deletePost && <DeleteModal />}
       </main>
     </div>
-  )
+  );
 }
 
-export async function getServerSideProps (context) {
-  const trendingResults = await fetch('https://jsonkeeper.com/b/NKEV').then(
-      (res)=> res.json()
-  )
-  const followResults = await  fetch('https://jsonkeeper.com/b/WWMJ').then(
-      (res)=> res.json()
-  )
-  const providers = await getProviders()
-  const session = await getSession(context)
+export async function getServerSideProps(context) {
+  const trendingResults = await fetch("https://jsonkeeper.com/b/NKEV").then(
+    (res) => res.json()
+  );
+  const followResults = await fetch("https://jsonkeeper.com/b/WWMJ").then(
+    (res) => res.json()
+  );
+  const providers = await getProviders();
+  const session = await getSession(context);
   return {
     props: {
       trendingResults,
@@ -45,5 +62,5 @@ export async function getServerSideProps (context) {
       providers,
       session,
     },
-  }
+  };
 }

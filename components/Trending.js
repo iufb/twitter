@@ -20,7 +20,7 @@ const Trending = ({ result }) => {
         </p>
       </div>
         {result.img ? (
-            <Image src={result.img} width={70} height={70} objectFit='cover' className='rounded-2xl' />
+            <Image src={result.img} alt='img' width={70} height={70} objectfit='cover' className='rounded-2xl' />
         )
         : (
             <div className='icon group'>

@@ -17,7 +17,7 @@ const Widgets = ({ trendingResults, followResults }) => {
         </div>
       </div>
       <div className="text-[#d9d9d9] space-y-3 bg-[#15181c] pt-2 rounded-xl w-11/12 xl:w-9/12">
-        <h4 className="font-bold text-xl px-4">What's happening</h4>
+        <h4 className="font-bold text-xl px-4">What&apos;s  happening</h4>
         {trendingResults.map((result, index) => (
           <Trending key={index} result={result} />
         ))}
@@ -26,24 +26,27 @@ const Widgets = ({ trendingResults, followResults }) => {
         </button>
       </div>
       <div className="text-[#d9d9d9] space-y-3 bg-[#15181c] pt-2 rounded-xl w-11/12 xl:w-9/12">
-        <h4 className="font-bold text-xl px-4">Who to follow</h4>
+        <h4 className="font-bold text-xl px-4 ">Who to follow</h4>
         {followResults.map((result, index) => (
-          <div key={index} className="trending">
-            <Image
-              src={result.userImg}
-              width={50}
-              height={50}
-              objectFit="cover"
-              className="rounded-full"
-            />
-            <div className="ml-4 leading-5 group">
-              <h4 className="font-bold group-hover:underline">
-                {result.username}
-              </h4>
-              <h5 className="text-gray-500 text-[15px]">{result.tag}</h5>
-            </div>
+          <div key={index} className="trending ">
+           <div className='flex '>
+               <Image
+                   src={result.userImg}
+                   alt='img'
+                   width={50}
+                   height={50}
+                   objectfit="cover"
+                   className="rounded-full"
+               />
+               <div className="ml-4 leading-5 group ">
+                   <h4 className="font-bold group-hover:underline">
+                       {result.username}
+                   </h4>
+                   <h5 className="text-gray-500 text-[15px]">{result.tag}</h5>
+               </div>
+           </div>
 
-            <button className="ml-auto bg-white hover:bg-gray-300 text-black rounded-full font-bold text-sm py-1.5 px-3.5">
+            <button className="ml-auto bg-white hover:bg-gray-300 text-black rounded-full font-bold text-sm py-1.5 px-3.5 ">
               Follow
             </button>
           </div>
@@ -53,7 +56,8 @@ const Widgets = ({ trendingResults, followResults }) => {
         </button>
       </div>
     </div>
-  );
+  )
+;
 };
 
 export default Widgets;

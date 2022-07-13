@@ -20,12 +20,18 @@ import {
 import { getDownloadURL, ref, uploadString } from '@firebase/storage'
 import { db, storage } from '../firebase'
 import Image from "next/image";
-function Input() {
+import {useRecoilState} from "recoil";
+import {modalState} from "../atoms/modalAtom";
+import {useRouter} from "next/router";
+function Input({rows,nameBtn, placeholder = "What's happening?", check = false}) {
   const { data: session} = useSession()
   const [input, setInput] = useState('')
   const [selectedFile, setSelectedFile] = useState(null)
   const [showEmojis, setShowEmojis] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [setIsOpen]= useRecoilState(modalState)
+  const router = useRouter()
+  const { id } = router.query;
   const sendPost = async () => {
     if (loading) return
     setLoading(true)
@@ -52,7 +58,21 @@ function Input() {
     setInput('')
     setSelectedFile(null)
     setShowEmojis(false)
+    setIsOpen(false)
   }
+  const sendComment = async (e) => {
+    e.preventDefault();
+
+    await addDoc(collection(db, "posts", id, "comments"), {
+      comment: input,
+      username: session.user.name,
+      tag: session.user.tag,
+      userImg: session.user.image,
+      timestamp: serverTimestamp(),
+    });
+
+    setInput("");
+  };
   const filePickerRef = useRef(null)
   const addImageToPost = (e) => {
     const reader = new FileReader()
@@ -76,17 +96,23 @@ function Input() {
     <div
       className={`border-b border-gray-700 p-3 flex gap-x-3 overflow-y-scroll ${loading && 'opacity-60'}`}
     >
-      <img
-        src={session.user.image}
-        className="h-11 w-11 rounded-full cursor-pointer"
-      />
+      <div >
+        <Image
+            src={session.user.image}
+            alt='img'
+            width={44}
+            height={44}
+            className='rounded-full cursor-pointer'
+
+        />
+      </div>
       <div className="w-full divide-y divide-gray-700 ">
         <div className={`${selectedFile && 'pb-7'} ${input && 'space-y-2.5'}`}>
-          <input
+          <textarea
             value={input}
-            rows="2"
-            placeholder="What's happening?"
-            className="bg-transparent outline-none text-[#d9d9d9] text-lg placeholder-gray-500 tracking-wide min-h-[50px] w-full"
+            rows={selectedFile ? 2 : rows}
+            placeholder={placeholder}
+            className="bg-transparent outline-none text-[#d9d9d9] text-lg placeholder-gray-500 tracking-wide min-h-[50px] w-full placeholder:text-[20px]"
             onChange={(e) => setInput(e.target.value)}
           />
           {selectedFile && (
@@ -100,7 +126,7 @@ function Input() {
               <img
                 src={selectedFile}
                 alt="file"
-                className="rounded-2xl max-h-80 object-contain "
+                className="rounded-2xl max-h-[500px] object-contain "
               />
             </div>
           )}
@@ -124,33 +150,36 @@ function Input() {
                 <ChartBarIcon className="text-[#1d9bf0] h-[22px]" />
               </div>
 
-              <div className="icon" onClick={() => setShowEmojis(!showEmojis)}>
+              <div className="icon" onClick={(e) =>
+
+                setShowEmojis(!showEmojis)
+              }>
                 <EmojiHappyIcon className="text-[#1d9bf0] h-[22px]" />
               </div>
 
               <div className="icon">
                 <CalendarIcon className="text-[#1d9bf0] h-[22px]" />
               </div>
-              {showEmojis && (
-                <Picker
-                  onSelect={addEmoji}
-                  style={{
-                    position: 'absolute',
-                    marginTop: '465px',
-                    marginLeft: -40,
-                    maxWidth: '320px',
-                    borderRadius: '20px',
-                  }}
-                  theme="dark"
-                />
-              )}
+                {showEmojis && (
+                    <Picker
+                        onSelect={addEmoji}
+                        style={{
+                          position: 'absolute',
+                          marginTop: selectedFile ? '-500px' : '465px',
+                          marginLeft: -40,
+                          maxWidth: '320px',
+                          borderRadius: '20px',
+                        }}
+                        theme="dark"
+                    />
+                )}
             </div>
             <button
               className="bg-[#1d9bf0] text-white rounded-full px-4 py-1.5 font-bold shadow-md hover:bg-[#1a8cd8] disabled:hover:bg-[#1d9bf0] disabled:opacity-50 disabled:cursor-default"
               disabled={!input.trim() && !selectedFile}
-              onClick={sendPost}
+              onClick={check ? sendComment : sendPost}
             >
-              Tweet
+              {nameBtn}
             </button>
           </div>
         )}
