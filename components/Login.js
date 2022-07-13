@@ -7,9 +7,8 @@ function Login({ providers }) {
         <div className="flex flex-row align-center ">
           <div
               className="xl:w-[1040px] xl:h-[100vh] relative"
-              // style={{ backgroundImage: 'url(../logimg.png)' }}
           >
-            <div className='invisible xl:visible'>
+            <div className='hidden xl:block'>
             <Image src='/logimg.png' width={1040} height={1000}/>
             </div>
 
@@ -26,7 +25,7 @@ function Login({ providers }) {
 
           </div>
           <div className="w-[880px] h-[880px]">
-            <div className="space-y-[60px] ml-[35px]">
+            <div className="space-y-[60px] xl:ml-[35px] ml-[40px]">
               <div className='mt-[40px]'>
                 <Image
                     src="https://rb.gy/ogau5a"
