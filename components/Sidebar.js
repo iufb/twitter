@@ -20,7 +20,7 @@ import React from "react";
 import Link from "next/link";
 function Sidebar({ml}) {
   const { data: session } = useSession()
-    const [setIsOpen] = useRecoilState(modalState)
+    const [isOpen, setIsOpen] = useRecoilState(modalState)
     const [quit, setQuit] = useRecoilState(quitState)
     const router = useRouter()
   return (
