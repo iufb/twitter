@@ -34,7 +34,7 @@ const QuitModal = () => {
                             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                         >
-                            <div className='shadow shadow-white xl:h-[130px] xl:w-[300px] bg-black rounded-2xl overflow-hidden opacity-90 '
+                            <div className='shadow shadow-gray-400 xl:h-[130px] xl:w-[300px] bg-black rounded-2xl overflow-hidden opacity-90 '
 
                             >
                                 <div>
