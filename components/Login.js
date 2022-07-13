@@ -6,10 +6,15 @@ function Login({ providers }) {
   return (
         <div className="flex flex-row align-center ">
           <div
-              className="w-[1040px] h-[100vh] relative"
-              style={{ backgroundImage: 'url(../logimg.png)' }}
+              className="xl:w-[1040px] xl:h-[100vh] relative"
+              // style={{ backgroundImage: 'url(../logimg.png)' }}
           >
+            <div className='invisible xl:visible'>
+            <Image src='/logimg.png' width={1040} height={1000}/>
+            </div>
+
             <div className='absolute top-[300px] left-[350px]'>
+
               <Image
                   src="https://rb.gy/ogau5a"
                   width={320}
@@ -32,7 +37,7 @@ function Login({ providers }) {
                 />
               </div>
 
-              <h1 className="mt-7 text-white font-bold text-7xl">
+              <h1 className="mt-7 text-white font-bold xl:text-7xl text-5xl">
                 Aware <br /> of what is happening
               </h1>
               <h3 className="text-white font-bold text-4xl ">Join Twitter now!</h3>
