@@ -47,8 +47,9 @@ function Sidebar({ml}) {
         <SidebarLink text="Profile" Icon={UserIcon} />
         <SidebarLink text="More" Icon={DotsCircleHorizontalIcon} />
       </div>
-      <button className="w-[50px] h-[50px] text-[15px] xl:inline xl:ml-auto bg-[#1d9bf0] text-white rounded-full xl:w-56 xl:h-[52px] font-bold xl:text-lg shadow-md hover:bg-[#1a8cd8]" onClick={()=>setIsOpen(true)}>
-        Tweet
+      <button className="w-[50px] h-[50px]  text-[0px] xl:inline xl:ml-auto bg-[#1d9bf0] text-white rounded-full xl:w-56 xl:h-[52px] font-bold xl:text-lg shadow-md hover:bg-[#1a8cd8]" onClick={()=>setIsOpen(true)}>
+          <img src='../feather.png' alt='feather' className='w-[30px] h-[30px] mx-auto xl:hidden'/>
+          Tweet
       </button>
       <div
         className=" mt-[100px] text-[#d9d9d9] flex  xl:mt-[260px] items-center justify-center hoverAnimation xl:ml-auto  xl:-mr-5 mt-auto xl:min-w-[254px] xl:max-w-[254px] "
